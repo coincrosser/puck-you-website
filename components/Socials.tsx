@@ -98,10 +98,11 @@ const Socials: React.FC = () => {
         <div className="w-full max-w-3xl aspect-video rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
           <iframe
             className="w-full h-full"
-            src={`https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0`}
+            src="https://www.youtube.com/embed/c6QPtqoKOGI?si=ylSvgPxv03R3HEkX"
             title="Featured PUCK Video"
             frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
           />
         </div>
