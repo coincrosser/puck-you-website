@@ -1,48 +1,49 @@
 
 export const PUCK_IMAGES = {
   HERO_AVATAR: {
-    url: "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,quality=75,width=1000,height=1000/content/gallery-images/u0/d1936357-190b-484d-947b-11d2112469d4.jpg",
+    // fall back to tracked local asset for reliable local dev
+    url: '/assets/images/neutral.png',
     base64: ""
   },
   GALLERY: [
     {
       id: "talking",
-      url: "",
+      url: '/assets/images/talking.png',
       base64: "",
       caption: "PUCK IS TALKING",
       tag: "VOICE"
     },
     {
       id: "wink",
-      url: "", 
+      url: '/assets/images/wink.png',
       base64: "",
       caption: "PUCK KNOWS SOMETHING",
       tag: "WINK"
     },
     {
       id: "neutral",
-      url: "", 
+      url: '/assets/images/neutral.png',
       base64: "",
       caption: "STARE INTO THE ABYSS",
       tag: "IDLE"
     },
     {
       id: "happy",
-      url: "", 
+      url: '/assets/images/happy.png',
       base64: "",
       caption: "THRIFTY BLISS",
       tag: "HAPPY"
     },
     {
       id: "blink",
-      url: "", 
+      url: '/assets/images/blink.png',
       base64: "",
       caption: "PUCK REBOOTING",
       tag: "BLINK"
     },
     {
       id: "angry",
-      url: "", 
+      url: '/assets/images/angry.png',
       base64: "",
       caption: "DON'T TOUCH THE OCTOPUS",
       tag: "ANGRY"
