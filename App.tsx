@@ -12,16 +12,28 @@ const App: React.FC = () => {
   const [showConverter, setShowConverter] = useState(false);
 
   useEffect(() => {
-    // Try to load local puck-base64.json (ignored, optional)
+    // Try remote hosted puck-base64.json first (configurable), fall back to local file
     (async () => {
       try {
-        const res = await fetch('/puck-base64.json');
-        if (!res.ok) return;
-        const map = await res.json();
-        applyBase64Map(map);
-        console.log('Applied local base64 image map');
+        const { BASE64_URL } = await import('./constants/api');
+        const tryUrls = [];
+        if (BASE64_URL) tryUrls.push(BASE64_URL);
+        tryUrls.push('/puck-base64.json');
+
+        for (const url of tryUrls) {
+          try {
+            const res = await fetch(url);
+            if (!res.ok) continue;
+            const map = await res.json();
+            applyBase64Map(map);
+            console.log('Applied base64 image map from', url);
+            break;
+          } catch (e) {
+            // try next
+          }
+        }
       } catch (err) {
-        // silent: file may not exist in deployments
+        // silent
       }
     })();
   }, []);
