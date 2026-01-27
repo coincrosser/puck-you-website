@@ -1,49 +1,49 @@
 
 export const PUCK_IMAGES = {
   HERO_AVATAR: {
-    // fall back to tracked local asset for reliable local dev
-    url: '/assets/images/neutral.png',
+    // Use raw GitHub URL so asset is accessible on the web
+    url: 'https://raw.githubusercontent.com/coincrosser/puck-you-website/main/assets/images/neutral.png',
     base64: ""
   },
   GALLERY: [
     {
       id: "talking",
-      url: '/assets/images/talking.png',
+      url: 'https://raw.githubusercontent.com/coincrosser/puck-you-website/main/assets/images/talking.png',
       base64: "",
       caption: "PUCK IS TALKING",
       tag: "VOICE"
     },
     {
       id: "wink",
-      url: '/assets/images/wink.png',
+      url: 'https://raw.githubusercontent.com/coincrosser/puck-you-website/main/assets/images/wink.png', 
       base64: "",
       caption: "PUCK KNOWS SOMETHING",
       tag: "WINK"
     },
     {
       id: "neutral",
-      url: '/assets/images/neutral.png',
+      url: 'https://raw.githubusercontent.com/coincrosser/puck-you-website/main/assets/images/neutral.png',
       base64: "",
       caption: "STARE INTO THE ABYSS",
       tag: "IDLE"
     },
     {
       id: "happy",
-      url: '/assets/images/happy.png',
+      url: 'https://raw.githubusercontent.com/coincrosser/puck-you-website/main/assets/images/happy.png',
       base64: "",
       caption: "THRIFTY BLISS",
       tag: "HAPPY"
     },
     {
       id: "blink",
-      url: '/assets/images/blink.png',
+      url: 'https://raw.githubusercontent.com/coincrosser/puck-you-website/main/assets/images/blink.png',
       base64: "",
       caption: "PUCK REBOOTING",
       tag: "BLINK"
     },
     {
       id: "angry",
-      url: '/assets/images/angry.png',
+      url: 'https://raw.githubusercontent.com/coincrosser/puck-you-website/main/assets/images/angry.png',
       base64: "",
       caption: "DON'T TOUCH THE OCTOPUS",
       tag: "ANGRY"
