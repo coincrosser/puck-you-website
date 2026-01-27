@@ -26,11 +26,12 @@ const Hero: React.FC = () => {
             He's not here to be nice; he's here to be <span className="text-white font-bold">PUCK</span>.
           </p>
           <div className="flex flex-wrap gap-4">
-            <button className="bg-white text-black px-8 py-4 rounded-lg font-heading text-lg hover:bg-purple-600 hover:text-white transition-all transform hover:-translate-y-1">
+            <button className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-2xl font-heading text-lg shadow-lg hover:scale-105 transform transition-all">
               FOLLOW PUCK
             </button>
-            <a href="#socials" className="border border-zinc-700 text-white px-8 py-4 rounded-lg font-heading text-lg hover:border-purple-500 transition-all flex items-center justify-center">
-              SEE VIDEOS
+            <a href="#socials" className="group relative inline-flex items-center justify-center overflow-hidden rounded-2xl px-8 py-4 text-lg font-heading text-white bg-zinc-900/40 border border-zinc-800 hover:bg-zinc-800 transition-all">
+              <span className="relative z-10">SEE VIDEOS</span>
+              <span className="absolute right-4 opacity-70 group-hover:translate-x-1 transition-transform">▶</span>
             </a>
           </div>
         </div>
@@ -53,11 +54,17 @@ const Hero: React.FC = () => {
         </div>
       </div>
       
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <svg className="w-6 h-6 text-zinc-500" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-          <path d="M19 14l-7 7-7-7m14-8l-7 7-7-7"></path>
-        </svg>
+      {/* Scroll indicator (clickable) */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <button
+          onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}
+          aria-label="Scroll to gallery"
+          className="w-14 h-14 rounded-full bg-zinc-900/60 border border-zinc-800 flex items-center justify-center shadow-xl hover:scale-110 transition-transform"
+        >
+          <svg className="w-6 h-6 text-purple-400 animate-bounce" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M12 5v14M5 12l7 7 7-7"></path>
+          </svg>
+        </button>
       </div>
     </div>
   );

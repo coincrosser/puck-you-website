@@ -18,3 +18,15 @@ View your app in AI Studio: https://ai.studio/apps/drive/14BMD3_J_ZXmXwqTEiFvjj-
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+### Regenerating base64 images (local only)
+
+Base64 image blobs are generated locally and are not committed.
+
+To regenerate:
+
+```bash
+npm run gen:base64
+```
+
+The script writes `puck-base64.json` at the repository root; keep this file local for AI Studio uploads.

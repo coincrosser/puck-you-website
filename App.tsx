@@ -1,14 +1,30 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';
 import Roadmap from './components/Roadmap';
 import Socials from './components/Socials';
 import Header from './components/Header';
 import ImageConverter from './components/ImageConverter';
+import { applyBase64Map } from './constants/images';
 
 const App: React.FC = () => {
   const [showConverter, setShowConverter] = useState(false);
+
+  useEffect(() => {
+    // Try to load local puck-base64.json (ignored, optional)
+    (async () => {
+      try {
+        const res = await fetch('/puck-base64.json');
+        if (!res.ok) return;
+        const map = await res.json();
+        applyBase64Map(map);
+        console.log('Applied local base64 image map');
+      } catch (err) {
+        // silent: file may not exist in deployments
+      }
+    })();
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden">

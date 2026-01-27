@@ -43,7 +43,7 @@ const ImageConverter: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             <h2 className="text-2xl font-heading text-white">PUCK'S BASE64 MACHINE</h2>
             <p className="text-xs text-purple-400 font-space tracking-widest mt-1">CONVERT ASSETS INTO PERMANENT CODE</p>
           </div>
-          <button onClick={onClose} className="text-zinc-500 hover:text-white font-heading text-xl">X</button>
+          <button onClick={onClose} className="text-zinc-300 hover:text-white font-heading text-xl bg-zinc-900/40 px-3 py-1 rounded-md">X</button>
         </div>
 
         <div className="p-8 space-y-6 overflow-y-auto">

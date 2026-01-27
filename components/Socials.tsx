@@ -92,6 +92,20 @@ const Socials: React.FC = () => {
           allowFullScreen
         ></iframe>
       </div>
+
+      {/* Featured single video embed for immediate preview */}
+      <div className="mt-10 grid place-items-center">
+        <div className="w-full max-w-3xl aspect-video rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
+          <iframe
+            className="w-full h-full"
+            src={`https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0`}
+            title="Featured PUCK Video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      </div>
     </div>
   );
 };
