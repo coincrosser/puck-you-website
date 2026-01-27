@@ -1,6 +1,11 @@
 const fs = require("fs");
 const path = require("path");
 
+if (process.env.CI) {
+  console.error("❌ base64 generator should not run in CI. Run locally: npm run gen:base64");
+  process.exit(1);
+}
+
 // Source images folder (tracked inside the repo)
 const INPUT_DIR = path.join(__dirname, '..', 'assets', 'images');
 
