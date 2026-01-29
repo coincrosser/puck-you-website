@@ -1,13 +1,17 @@
 
 import React from 'react';
 
-// Static Configuration moved outside component for better stability
-// NOTE: default Google/Dev channel removed to avoid linking to unrelated content.
-// You can set your channel ID here (or wire it to an environment/constant file).
-const YOUTUBE_CHANNEL_ID = ""; 
-const UPLOADS_PLAYLIST_ID = YOUTUBE_CHANNEL_ID && YOUTUBE_CHANNEL_ID.startsWith && YOUTUBE_CHANNEL_ID.startsWith('UC')
-  ? 'UU' + YOUTUBE_CHANNEL_ID.substring(2)
-  : (YOUTUBE_CHANNEL_ID || '');
+// You can set your YouTube info here. Use your channel handle or specific video IDs.
+// The code prefers a playlist id if provided. If not, it will embed any featured video IDs.
+const YOUTUBE_CHANNEL_HANDLE = "puckdotyou"; // your handle (without @)
+const YOUTUBE_CHANNEL_URL = YOUTUBE_CHANNEL_HANDLE ? `https://www.youtube.com/@${YOUTUBE_CHANNEL_HANDLE}` : '';
+
+// Optional: If you have a playlist id for uploads, put it here (e.g. "PLxxxx").
+const UPLOADS_PLAYLIST_ID = "";
+
+// Optional: list one or two featured video IDs to embed directly (no API required).
+// Example: ['c6QPtqoKOGI', 'ANOTHER_ID']
+const FEATURED_VIDEO_IDS: string[] = ['c6QPtqoKOGI'];
 
 const CHANNELS_DATA = [
   {
@@ -19,7 +23,7 @@ const CHANNELS_DATA = [
       </svg>
     ),
     color: "hover:text-red-500",
-    href: YOUTUBE_CHANNEL_ID ? `https://www.youtube.com/channel/${YOUTUBE_CHANNEL_ID}` : '#'
+    href: YOUTUBE_CHANNEL_URL || '#'
   },
   {
     name: "TIKTOK",
@@ -94,9 +98,24 @@ const Socials: React.FC = () => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
+        ) : FEATURED_VIDEO_IDS && FEATURED_VIDEO_IDS.length > 0 ? (
+          <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+            {FEATURED_VIDEO_IDS.map((id) => (
+              <div key={id} className="w-full aspect-video rounded-lg overflow-hidden border border-zinc-800 bg-black">
+                <iframe
+                  className="w-full h-full"
+                  src={`https://www.youtube.com/embed/${id}`}
+                  title={`PUCK video ${id}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+            ))}
+          </div>
         ) : (
           <div className="w-full h-full grid place-items-center text-zinc-400">
-            <p className="p-8">YouTube channel not configured.</p>
+            <p className="p-8">YouTube not configured — add `UPLOADS_PLAYLIST_ID` or `FEATURED_VIDEO_IDS`.</p>
           </div>
         )}
       </div>
