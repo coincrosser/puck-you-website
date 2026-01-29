@@ -2,10 +2,12 @@
 import React from 'react';
 
 // Static Configuration moved outside component for better stability
-const YOUTUBE_CHANNEL_ID = "UC_x5XG1OV2P6uZZ5FSM9Ttw"; 
-const UPLOADS_PLAYLIST_ID = YOUTUBE_CHANNEL_ID.startsWith('UC') 
-  ? 'UU' + YOUTUBE_CHANNEL_ID.substring(2) 
-  : YOUTUBE_CHANNEL_ID;
+// NOTE: default Google/Dev channel removed to avoid linking to unrelated content.
+// You can set your channel ID here (or wire it to an environment/constant file).
+const YOUTUBE_CHANNEL_ID = ""; 
+const UPLOADS_PLAYLIST_ID = YOUTUBE_CHANNEL_ID && YOUTUBE_CHANNEL_ID.startsWith && YOUTUBE_CHANNEL_ID.startsWith('UC')
+  ? 'UU' + YOUTUBE_CHANNEL_ID.substring(2)
+  : (YOUTUBE_CHANNEL_ID || '');
 
 const CHANNELS_DATA = [
   {
@@ -17,7 +19,7 @@ const CHANNELS_DATA = [
       </svg>
     ),
     color: "hover:text-red-500",
-    href: `https://www.youtube.com/channel/${YOUTUBE_CHANNEL_ID}`
+    href: YOUTUBE_CHANNEL_ID ? `https://www.youtube.com/channel/${YOUTUBE_CHANNEL_ID}` : '#'
   },
   {
     name: "TIKTOK",
@@ -83,14 +85,20 @@ const Socials: React.FC = () => {
         <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-purple-600/10 to-transparent pointer-events-none group-hover:from-purple-600/30 transition-all duration-500"></div>
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-zinc-800/20 to-transparent pointer-events-none group-hover:from-purple-900/20 transition-all duration-500"></div>
 
-        <iframe 
-          className="w-full h-full relative z-0"
-          src={`https://www.youtube.com/embed/videoseries?list=${UPLOADS_PLAYLIST_ID}`}
-          title="PUCK's Latest Content"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe>
+        {UPLOADS_PLAYLIST_ID ? (
+          <iframe 
+            className="w-full h-full relative z-0"
+            src={`https://www.youtube.com/embed/videoseries?list=${UPLOADS_PLAYLIST_ID}`}
+            title="PUCK's Latest Content"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+        ) : (
+          <div className="w-full h-full grid place-items-center text-zinc-400">
+            <p className="p-8">YouTube channel not configured.</p>
+          </div>
+        )}
       </div>
 
       {/* Featured single video embed for immediate preview */}
