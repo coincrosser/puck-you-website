@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react';
-import SplashScreen from './components/SplashScreen';
 import Home from './components/Home';
 
 /**
@@ -18,7 +17,6 @@ const CONFIG = {
 };
 
 const App: React.FC = () => {
-  const [isSplashComplete, setIsSplashComplete] = useState(false);
 
   const handlePlayNow = () => {
     // Open the existing HTML game file in a new tab/full screen
@@ -27,24 +25,10 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-purple-600 selection:text-white overflow-hidden">
-      {!isSplashComplete && (
-        <SplashScreen 
-          onComplete={() => setIsSplashComplete(true)} 
-          logoUrl={CONFIG.SPLASH_IMAGE}
-          audioUrl={CONFIG.SPLASH_AUDIO}
-        />
-      )}
+                  <Home handlePlayNow={handlePlayNow} />
+)}
 
-      {isSplashComplete && (
-        <Home 
-          onPlay={handlePlayNow} 
-          youtubeUrl={CONFIG.YOUTUBE_URL} 
-          trailerVideoUrl={CONFIG.TRAILER_VIDEO}
-          trailerYoutubeUrl={CONFIG.TRAILER_YOUTUBE_URL}
-          trailerEmbedUrl={CONFIG.TRAILER_EMBED_URL}
-        />
-      )}
-    </div>
+      div>
   );
 };
 
