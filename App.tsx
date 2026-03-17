@@ -26,9 +26,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-black text-white selection:bg-purple-600 selection:text-white overflow-hidden">
                   <Home handlePlayNow={handlePlayNow} />
-)}
-
-      div>
+    </div>
   );
 };
 
