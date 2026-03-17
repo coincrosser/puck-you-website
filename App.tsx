@@ -1,95 +1,49 @@
 
-import React, { useEffect, useState } from 'react';
-import Hero from './components/Hero';
-import Gallery from './components/Gallery';
-import Roadmap from './components/Roadmap';
-import Socials from './components/Socials';
-import Header from './components/Header';
-import ImageConverter from './components/ImageConverter';
-import { applyBase64Map } from './constants/images';
+import React, { useState } from 'react';
+import SplashScreen from './components/SplashScreen';
+import Home from './components/Home';
+
+/**
+ * PUCK.YOU CONFIGURATION
+ * Edit these variables to update the site assets and links.
+ */
+const CONFIG = {
+  SPLASH_IMAGE: '/hero_art.jpg',
+  SPLASH_AUDIO: '/splash_audio.mp3',
+  TRAILER_VIDEO: '/trailer.mp4',
+  TRAILER_YOUTUBE_URL: 'https://youtube.com/shorts/rFicbjxdqkI?si=KtjFXmZel2oItqxW',
+  TRAILER_EMBED_URL: 'https://www.youtube.com/embed/rFicbjxdqkI?autoplay=1&mute=1&loop=1&playlist=rFicbjxdqkI&controls=1&rel=0',
+  GAME_URL: 'https://puckyou.netlify.app',
+  YOUTUBE_URL: 'https://youtube.com/@robocowden?si=RhBwmC1M9xrTuyU5'
+};
 
 const App: React.FC = () => {
-  const [showConverter, setShowConverter] = useState(false);
+  const [isSplashComplete, setIsSplashComplete] = useState(false);
 
-  useEffect(() => {
-    // Try remote hosted puck-base64.json first (configurable), fall back to local file
-    (async () => {
-      try {
-        const { BASE64_URL } = await import('./constants/api');
-        const tryUrls = [];
-        if (BASE64_URL) tryUrls.push(BASE64_URL);
-        tryUrls.push('/puck-base64.json');
-
-        for (const url of tryUrls) {
-          try {
-            const res = await fetch(url);
-            if (!res.ok) continue;
-            const map = await res.json();
-            applyBase64Map(map);
-            console.log('Applied base64 image map from', url);
-            break;
-          } catch (e) {
-            // try next
-          }
-        }
-      } catch (err) {
-        // silent
-      }
-    })();
-  }, []);
+  const handlePlayNow = () => {
+    // Open the existing HTML game file in a new tab/full screen
+    window.open(CONFIG.GAME_URL, '_blank');
+  };
 
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden">
-      <Header />
-      
-      <main className="flex-grow">
-        {/* Hero Section - The Big Intro */}
-        <section id="intro">
-          <Hero />
-        </section>
+    <div className="min-h-screen bg-black text-white selection:bg-purple-600 selection:text-white overflow-hidden">
+      {!isSplashComplete && (
+        <SplashScreen 
+          onComplete={() => setIsSplashComplete(true)} 
+          logoUrl={CONFIG.SPLASH_IMAGE}
+          audioUrl={CONFIG.SPLASH_AUDIO}
+        />
+      )}
 
-        {/* The Faces of PUCK - Gallery */}
-        <section id="gallery" className="py-20 bg-zinc-950">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-6xl font-heading text-center mb-12 text-purple-500">
-              MANY FACES. ONE PUCK.
-            </h2>
-            <Gallery />
-          </div>
-        </section>
-
-        {/* Social Links & Videos */}
-        <section id="socials" className="py-20 bg-black">
-          <Socials />
-        </section>
-
-        {/* The Roadmap - Future Vision */}
-        <section id="roadmap" className="py-20 bg-zinc-950 border-t border-purple-900/30">
-          <Roadmap />
-        </section>
-      </main>
-
-      <footer className="py-12 bg-black border-t border-zinc-800 relative">
-        <div className="container mx-auto px-4 text-center">
-          <div className="font-heading text-2xl text-purple-600 mb-4">PUCK.YOU</div>
-          <p className="text-zinc-500 text-sm max-w-md mx-auto">
-            PUCK is a thrifty, slightly grimy, AI-powered octopus living on the edge of the digital abyss.
-          </p>
-          <div className="mt-8 text-zinc-700 text-xs">
-            © {new Date().getFullYear()} PUCK.YOU - ALL RESTRAINTS REMOVED.
-          </div>
-          
-          {/* Tool Trigger */}
-          <button 
-            onClick={() => setShowConverter(true)}
-            className="mt-8 text-[10px] text-zinc-800 hover:text-purple-900 font-bold tracking-widest uppercase transition-colors"
-          >
-            [ Asset Fixer Tool ]
-          </button>
-        </div>
-      </footer>
-
-      {showConverter && <ImageConverter onClose={() => setShowConverter(false)} />}
+      {isSplashComplete && (
+        <Home 
+          onPlay={handlePlayNow} 
+          youtubeUrl={CONFIG.YOUTUBE_URL} 
+          trailerVideoUrl={CONFIG.TRAILER_VIDEO}
+          trailerYoutubeUrl={CONFIG.TRAILER_YOUTUBE_URL}
+          trailerEmbedUrl={CONFIG.TRAILER_EMBED_URL}
+        />
+      )}
     </div>
   );
 };

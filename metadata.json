@@ -1,5 +1,6 @@
 {
-  "name": "PUCK.YOU - The Official Home of PUCK",
-  "description": "The digital landing spot for PUCK, the world's first thrifty AI avatar. Explore the roadmap, watch the videos, and join the revolution.",
-  "requestFramePermissions": []
+  "name": "PUCK.YOU",
+  "description": "The official launcher for PUCK.YOU - The internet's weirdest hockey goalie game. Block shots. Talk trash.",
+  "requestFramePermissions": [],
+  "appUrl": "https://puck.you"
 }
