@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>PUCK.YOU | The World's First Thrifty AI Avatar</title>
+    <meta name="description" content="Meet PUCK. A gritty, charismatic AI entity cobbled together from digital rust and thrift store philosophy.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              puck: {
+                purple: '#9333ea',
+                gold: '#fbbf24',
+                red: '#ef4444',
+                steel: '#94a3b8',
+                ice: '#bae6fd',
+              }
+            },
+            fontFamily: {
+              heading: ['Bungee', 'cursive'],
+              space: ['Space Grotesk', 'sans-serif'],
+              sans: ['Inter', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        --puck-purple: #9333ea;
+        --puck-black: #020202;
+      }
+      body {
+        background-color: var(--puck-black);
+        color: #ffffff;
+        font-family: 'Inter', sans-serif;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+      }
+      #root {
+        min-height: 100vh;
+      }
+      .font-heading {
+        font-family: 'Bungee', cursive;
+      }
+      .font-space {
+        font-family: 'Space Grotesk', sans-serif;
+      }
+      
+      /* Smooth Scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* CRT Glitch Overlay */
+      .crt-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+        background-size: 100% 3px, 3px 100%;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.5;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes glitch {
+        0% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(-2px, -2px); }
+        60% { transform: translate(2px, 2px); }
+        80% { transform: translate(2px, -2px); }
+        100% { transform: translate(0); }
+      }
+      .hover-glitch:hover {
+        animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
+      }
+
+      .purple-glow {
+        box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
+      }
+      .purple-glow:hover {
+        box-shadow: 0 0 40px rgba(147, 51, 234, 0.7);
+      }
+    </style>
+  <script type="module" crossorigin src="/assets/index-BwKpnpKv.js"></script>
+</head>
+  <body>
+    <div class="crt-overlay"></div>
+    <div id="root"></div>
+  </body>
+</html>
